@@ -55,6 +55,25 @@ func TestListWinnersReturnsAllWinners(t *testing.T) {
 	}
 }
 
+func TestListWinnersReadsYearQueryString(t *testing.T) {
+	setup()
+
+	handler := http.HandlerFunc(ListWinners)
+	rr := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/winners", nil)
+	q := req.URL.Query()
+	q.Add("year", "1970")
+	req.URL.RawQuery = q.Encode()
+	handler.ServeHTTP(rr, req)
+
+	body := rr.Body.String()
+	var winners data.Winners
+	json.Unmarshal([]byte(body), &winners)
+	if len(winners.Winners) == 21 {
+		t.Error("Did not read from query string")
+	}
+}
+
 func TestListWinnersReturnsAllWinnersByYear(t *testing.T) {
 	handler := http.HandlerFunc(ListWinners)
 	rr := httptest.NewRecorder()
