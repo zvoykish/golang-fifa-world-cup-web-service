@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-// RootHandler returns an empty body status  code
+// RootHandler returns an empty body status code
 func RootHandler(res http.ResponseWriter, req *http.Request) {
 
 }
