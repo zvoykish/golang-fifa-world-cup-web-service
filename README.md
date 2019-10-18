@@ -6,7 +6,9 @@ the FIFA World Cup championship.
 ## Running tests
 
 A proper Go environment is required in order to run this project.
-Once setup, tests can be run with the `go test -v handlers/*`
+Once setup, tests can be run with the following command:
+
+`go test -v ./handlers/`
 
 ## Running the server
 
